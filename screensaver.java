@@ -23,7 +23,6 @@ public class screensaver extends JFrame {
             if (x >= (3840 - w)) r = false;
             if (y <=0 ) up = false;
             if (y>= (2160 - h)) up = true;
-
             try{
                 Thread.sleep(20);
             }catch(InterruptedException e) {}
@@ -33,15 +32,14 @@ public class screensaver extends JFrame {
     public void paint (Graphics g) {
         g.setColor(new Color(red, green, blue));
         g.fillRect(0, 0, w, h);
-        red++;
-        green++;
-        blue++;
-        if (red == 255)
-        red = 0;
-        if (green == 255)
-        green = 0;
-        if (blue == 255)
-        blue = 0;
+        try{
+            Thread.sleep(200);
+            red = rand.nextInt(255);
+            blue = rand.nextInt(255);
+            green  = rand.nextInt(255);
+            //Create a for loop to gently fade to and from each color(generate a new color
+            //every 2 secs or so, and then fade into that color, until the next color in generated 
+        }catch(InterruptedException e) {}
     }
     public static void main(String[] args) {
         new screensaver();
