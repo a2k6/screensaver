@@ -1,12 +1,14 @@
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;
+import java.math.*;
 
 public class screensaver extends JFrame {
+    int delay = 5000;
     int x = 50, y = 70, w = 300, h = 300;
     boolean r = true, up = true;
     Random rand = new Random();
-    int red = rand.nextInt(255), green = rand.nextInt(255), blue = rand.nextInt(255);
+    int red = rand.nextInt(255), green = rand.nextInt(255), blue = rand.nextInt(255), nextRed, nextGreen, nextBlue;
 
     public screensaver() {
         setUndecorated(true);
@@ -33,10 +35,14 @@ public class screensaver extends JFrame {
         g.setColor(new Color(red, green, blue));
         g.fillRect(0, 0, w, h);
         try{
-            Thread.sleep(200);
-            red = rand.nextInt(255);
-            blue = rand.nextInt(255);
-            green  = rand.nextInt(255);
+            Thread.sleep(delay);
+            //Variable that controls the amount of time is at the very top of the code
+            nextRed = rand.nextInt(255);
+            nextBlue = rand.nextInt(255);
+            nextGreen  = rand.nextInt(255);
+            while(red != nextRed){
+                
+            }
             //Create a for loop to gently fade to and from each color(generate a new color
             //every 2 secs or so, and then fade into that color, until the next color in generated 
         }catch(InterruptedException e) {}
