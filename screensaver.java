@@ -3,12 +3,13 @@ import java.util.*;
 import java.awt.*;
 
 public class screensaver extends JFrame {
+    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     int delay = 5000;
-    int x = 50, y = 70, w = 300, h = 300;
+    int x = 50, y = 70, squareSize = 300;
     boolean r = true, up = true;
     Random rand = new Random();
     int red = rand.nextInt(255), green = rand.nextInt(255), blue = rand.nextInt(255), nextRed, nextGreen, nextBlue;
-    double temp, timePerAction, movementSpeed = 2.5;
+    double temp, timePerAction, movementSpeed = 2.5, width = size.getWidth(), height = size.getHeight();
 
     public screensaver() {
         setUndecorated(true);
@@ -16,17 +17,18 @@ public class screensaver extends JFrame {
         animate();
     }
     private void animate(){
+        setBounds(0, 0, (int)width, (int)height);
         while(true){
             //Setting the edges of the screen, checking for collision and then changing direction, and moving the square around
-            setBounds(x, y, w, h);
-            //Movement speed
+            //setBounds(x, y, squareSize, squareSize);
+            //Movement speeds
             if (r) x += movementSpeed; else x -= movementSpeed;
             if (up) y -= movementSpeed; else y += movementSpeed;
             //Checking bounds and changing the course of the square accordingly
             if (x <= 0) r = true;
-            if (x >= (3840 - w)) r = false;
+            if (x >= (width - squareSize)) r = false;
             if (y <=0 ) up = false;
-            if (y>= (2160 - h)) up = true;
+            if (y>= (height - squareSize)) up = true;
             //Pauses the code for 20ms
             try{
                 Thread.sleep(20);
@@ -36,33 +38,32 @@ public class screensaver extends JFrame {
             repaint();
         }
     }
-    public void paint (Graphics g) {
+    public void paint(Graphics g) {
+        g.fillRect(0, 0, (int)width, (int)height);
         g.setColor(new Color(red, green, blue));
-        g.fillRect(0, 0, w, h);
-        red = rand.nextInt(255);
-        green = rand.nextInt(255);
-        blue = rand.nextInt(255);
+        g.fillRect(0, 0, squareSize, squareSize);
         try{
             Thread.sleep(delay);
-            //Variable that controls the amount of time is at the very top of the code
             nextRed = rand.nextInt(255);
             nextBlue = rand.nextInt(255);
             nextGreen  = rand.nextInt(255);
-            while(red != nextRed){
-                temp = Math.abs(nextRed - red);
-                if (nextRed - red < 0){
-                    //Value of the expression is negative
-                } else if (nextRed - red > 0) {
-                    //Value of the expression is positive
-                } else {
-                    //Value of the expression is zero(there is no change between the start and next values)
-                }
-                for(var i = 0; i < temp; i++){
-
-                }
+            
+            //Code that fades the red channel
+            temp = Math.abs(nextRed - red);
+            if (nextRed - red < 0){
+                //Value of the expression is negative
+            } else if (nextRed - red > 0) {
+                //Value of the expression is positive
+            } else {
+                //Value of the expression is zero(there is no change between the start and next values)
             }
-            //Create a for loop to gently fade to and from each color(generate a new color
-            //every 2 secs or so, and then fade into that color, until the next color in generated 
+            for(var i = 0; i < temp; i++){
+                //Slowly increment the colors untill the values are equal
+                //Create one for loop per color
+            }
+
+            //Code that fades the blue channel
+             
         }catch(InterruptedException e) {}
     }
     public static void main(String[] args) {
