@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class screensaver extends JFrame {
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-    int delay = 5000;
+    int delay = 100;
     int x = 50, y = 70, squareSize = 300;
     boolean r = true, up = true;
     Random rand = new Random();
@@ -33,8 +33,9 @@ public class screensaver extends JFrame {
             try{
                 Thread.sleep(20);
             }catch(InterruptedException e) {}
-            //Since the paint() method calls the paintBorder(), paintComponent(), and paintChildren() methods, 
-            //If we just want to re-run the paint function to change some element other than the size trying to re-run the paint function(and assuming that we have not changed the size of the component, just the color), we use the repaint() method, which just updates the paint() method instead of forcing us to enter completely new parameters every time
+            /*Since the paint() method calls the paintBorder(), paintComponent(), and paintChildren() methods, 
+            If we just want to re-run the paint function to change some element other than the size trying to re-run the paint function(and assuming that we have not changed the size of the component, just the color), 
+            we use the repaint() method, which just updates the paint() method instead of forcing us to enter completely new parameters every time*/
             repaint();
         }
     }
@@ -57,12 +58,14 @@ public class screensaver extends JFrame {
             } else {
                 //Value of the expression is zero(there is no change between the start and next values)
             }
-            for(var i = 0; i < temp; i++){
+            for(int i = 0; i < temp; i++){
                 //Slowly increment the colors untill the values are equal
                 //Create one for loop per color
             }
 
             //Code that fades the blue channel
+
+            //Code that fades the green channel
              
         }catch(InterruptedException e) {}
     }
